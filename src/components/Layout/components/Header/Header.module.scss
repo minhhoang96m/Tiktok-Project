@@ -17,10 +17,11 @@
     align-items: center;
     justify-content: space-between;
 }
-
+.search, .search-result {
+    width: 36.1rem;
+}
 .search {
     position: relative;
-    width: 36.1rem;
     height: var(--search-height);
     padding-left: 1.6rem;
     display: flex;
@@ -83,4 +84,7 @@
         background-color: rgba(22, 24, 35, .03);
         cursor: pointer;
     }
+}
+.upload1 {
+    margin-right: 0.5rem ;
 }

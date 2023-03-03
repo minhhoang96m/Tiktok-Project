@@ -2,8 +2,11 @@ import classNames from "classnames/bind";
 import styles from './Dropper.module.scss'
 
 const cx = classNames.bind(styles)
-function Dropper({children}) {
-    return <div className={cx('Dropper')}>{children}</div>
+function Dropper({children, className}) {
+    const classes = cx('Dropper', {
+        [className]:className
+    })
+    return <div className={classes}>{children}</div>
     
 }
 

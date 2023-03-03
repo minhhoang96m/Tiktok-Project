@@ -1,5 +1,5 @@
 @import "normalize.css";
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 :root {
     --primary: rgba(254, 44, 85, 1);
     --black: #000;
@@ -22,6 +22,7 @@ html {
 }
 
 body {
+    font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;

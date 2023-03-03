@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+    faCircleQuestion,
     faCircleXmark,
+    faEarthAsia,
+    faKeyboard,
+    faEllipsisVertical,
     faMagnifyingGlass,
     faPlus,
     faSpinner,
+    faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import React from "react";
@@ -16,9 +21,28 @@ import { Dropper as PopperDropper } from "~/components/Dropper";
 import styles from "./Header.module.scss";
 import images from "~/assets/images";
 import AccountItem from "~/components/AccountItem";
+import Menu from "~/components/ListResult";
 
 const cx = classNames.bind(styles);
-
+const MENU_ITEMS = [
+    {
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
+        title: "English",
+    },
+    {
+        icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+        title: "Feedback and Help",
+        to: "/feedback"
+    },
+    {
+        icon: <FontAwesomeIcon icon={faKeyboard} />,
+        title: "Keyboard shortcut",
+    },
+    {
+        icon: <FontAwesomeIcon icon={faMoon} />,
+        title: "Dark mode",
+    },
+];
 function Header() {
     const [searchResult, setsearchResult] = useState([]);
 
@@ -83,6 +107,12 @@ function Header() {
                         Upload
                     </Button>
                     <Button primary={true}>Login</Button>
+
+                    <Menu items={MENU_ITEMS}>
+                        <button className={cx("more-btn")}>
+                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                        </button>
+                    </Menu>
                 </div>
             </div>
         </header>

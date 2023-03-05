@@ -28,11 +28,26 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: "English",
+        children: {
+            title: "Language",
+            data: [
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
         title: "Feedback and Help",
-        to: "/feedback"
+        to: "/feedback",
     },
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
@@ -41,6 +56,7 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faMoon} />,
         title: "Dark mode",
+        
     },
 ];
 function Header() {
@@ -51,7 +67,15 @@ function Header() {
             setsearchResult([...searchResult]);
         }, 0);
     }, [searchResult]);
-
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case "language":
+                console.log(menuItem.type);
+                break;
+            default:
+                console.log("Khong co type");
+        }
+    };
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
@@ -108,7 +132,7 @@ function Header() {
                     </Button>
                     <Button primary={true}>Login</Button>
 
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx("more-btn")}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>

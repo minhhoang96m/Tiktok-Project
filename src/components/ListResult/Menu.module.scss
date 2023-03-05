@@ -3,7 +3,39 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
+
 }
 .menu-lives {
     padding: 8px 0;
+    .menu-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 42px;
+        margin-left: 0;
+        padding-left: 2rem;
+        &:hover {
+            background: var(--primary);         
+        }
+    }
+}
+
+// Header-language
+
+.header {
+    position: relative;
+    height: 50px;
+    &-title {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        user-select: none;
+    }
+    &-btn {
+        width: 50px;
+        height: 100%;
+        background-color: transparent;
+        cursor: pointer;
+    }
 }

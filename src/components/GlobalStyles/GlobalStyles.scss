@@ -37,3 +37,22 @@ a[href] {
     color: var(--text-color);
     text-decoration: none;
 }
+body {
+    .tippy-box {
+        display: flex;
+        align-items: center;
+        height: 3.8rem;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+        background-color: rgba(84,84,84,0.92);
+    }
+    .tippy-arrow {
+        color:  rgba(84,84,84,0.92);
+    }
+    .tippy-box[data-placement^=bottom]>.tippy-arrow::before{
+        top: -0.8rem;
+    }
+
+}

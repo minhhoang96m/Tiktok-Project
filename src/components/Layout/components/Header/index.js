@@ -11,12 +11,11 @@ import {
     faPlus,
     faSpinner,
     faMoon,
-    faCloudUpload,
     faCableCar,
     faSun,
     faMoneyCheckDollar,
     faSignOut,
-
+    faCloudUpload,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import Tippy from "@tippyjs/react/headless";
@@ -29,6 +28,8 @@ import styles from "./Header.module.scss";
 import images from "~/assets/images";
 import AccountItem from "~/components/AccountItem";
 import Menu from "~/components/ListResult";
+import Image from "~/components/Image";
+import { IconInbox, IconMessage } from "~/components/Icon";
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -101,9 +102,10 @@ function Header() {
             icon: <FontAwesomeIcon icon={faSignOut} />,
             title: "Log out",
             to: "/logout",
-            separate :true,
+            separate: true,
         },
     ];
+
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
@@ -130,7 +132,6 @@ function Header() {
                             </PopperDropper>
                         </div>
                     )}
-                    
                 >
                     <div className={cx("search")}>
                         <input
@@ -155,17 +156,24 @@ function Header() {
                     {currentUser ? (
                         <>
                             <CloneTippy
-                                interactive
-                                delay={[0, 200]}
+          
+                                delay={[0, 50]}
                                 content="Upload video"
                                 placement="bottom"
                             >
                                 <button className={cx("action-btn")}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <IconMessage className={cx("icon-mes")} />
                                 </button>
-                                {/* <button className={cx("action-btn")}>
-                                    <FontAwesomeIcon icon={faMessage} />
-                                </button> */}
+                            </CloneTippy>
+                            <CloneTippy
+                         
+                                delay={[0, 50]}
+                                content="Messages"
+                                placement="bottom"
+                            >
+                                <button className={cx("action-btn")}>
+                                    <IconInbox className={cx("icon-inbox")} />
+                                </button>
                             </CloneTippy>
                         </>
                     ) : (
@@ -179,12 +187,16 @@ function Header() {
                             <Button primary={true}>Login</Button>
                         </>
                     )}
-                    <Menu items={ currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                    <Menu
+                        items={currentUser ? userMenu : MENU_ITEMS}
+                        onChange={handleMenuChange}
+                    >
                         {currentUser ? (
-                            <img
+                            <Image
                                 className={cx("user-avatar")}
                                 src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/c3a691d2863e61d0442e0e017fc36e0a~c5_100x100.jpeg?x-expires=1678280400&x-signature=y2A44i45NMqoUqpxp1%2BZzN2ifcY%3D"
                                 alt="ok"
+                                fallBack="https://p77-sign-va.tiktokcdn.com/tos-maliva-avt-0068/3c471a7fb8b64142610f545f61641c83~c5_100x100.jpeg?x-expires=1678370400&x-signature=TUxCR%2BzegHJeoTThjKWVJJJfbcA%3D"
                             />
                         ) : (
                             <button className={cx("more-btn")}>

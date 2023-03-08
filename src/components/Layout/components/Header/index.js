@@ -1,35 +1,31 @@
-import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCircleQuestion,
-    faCircleXmark,
     faEarthAsia,
     faKeyboard,
     faEllipsisVertical,
-    faMagnifyingGlass,
     faPlus,
-    faSpinner,
     faMoon,
     faCableCar,
     faSun,
     faMoneyCheckDollar,
     faSignOut,
-    faCloudUpload,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import Tippy from "@tippyjs/react/headless";
+
 import CloneTippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
 import Button from "~/components/Button";
-import { Dropper as PopperDropper } from "~/components/Dropper";
+
 import styles from "./Header.module.scss";
 import images from "~/assets/images";
-import AccountItem from "~/components/AccountItem";
+
 import Menu from "~/components/ListResult";
 import Image from "~/components/Image";
 import { IconInbox, IconMessage } from "~/components/Icon";
+import Search from "../Search";
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -67,14 +63,8 @@ const MENU_ITEMS = [
     },
 ];
 function Header() {
-    const [searchResult, setsearchResult] = useState([]);
     const currentUser = true;
 
-    useEffect(() => {
-        setTimeout(() => {
-            setsearchResult([...searchResult]);
-        }, 0);
-    }, [searchResult]);
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
             case "language":
@@ -113,50 +103,25 @@ function Header() {
                     <img src={images.logo} alt="Tiktok" />
                 </div>
 
-                <Tippy
-                    visible={searchResult.length > 0}
-                    interactive
-                    render={(attrs) => (
-                        <div
-                            className={cx("search-result")}
-                            tabIndex="-1"
-                            {...attrs}
-                        >
-                            <h4 className={cx("search-tittle")}>Account</h4>
-                            <PopperDropper>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </PopperDropper>
-                        </div>
-                    )}
-                >
-                    <div className={cx("search")}>
-                        <input
-                            className={cx("search-input")}
-                            placeholder="Search accounts and videos"
-                            spellCheck={false}
-                        />
+                <Search />
 
-                        <button className={cx("search-close")}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                        <button className={cx("search-loading")}>
-                            <FontAwesomeIcon icon={faSpinner} />
-                        </button>
-
-                        <button className={cx("search-icon")}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </Tippy>
                 <div className={cx("action")}>
                     {currentUser ? (
                         <>
                             <CloneTippy
-          
+                                delay={[0, 50]}
+                                content="Messages"
+                                placement="bottom"
+                            >
+                                <Button text className={cx("action-upload")}>
+                                    <FontAwesomeIcon
+                                        icon={faPlus}
+                                        className={cx("icon-upload")}
+                                    />
+                                    <span>Upload</span>
+                                </Button>
+                            </CloneTippy>
+                            <CloneTippy
                                 delay={[0, 50]}
                                 content="Upload video"
                                 placement="bottom"
@@ -166,7 +131,6 @@ function Header() {
                                 </button>
                             </CloneTippy>
                             <CloneTippy
-                         
                                 delay={[0, 50]}
                                 content="Messages"
                                 placement="bottom"

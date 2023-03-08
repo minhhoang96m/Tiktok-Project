@@ -1,6 +1,3 @@
-// import classNames from "classnames/bind";
-// import styles from '~/components/Layout/components/Header/Header.module.scss'
-
 const iconMessage = {
         icon: require("~/components/Icon/icon-mes.svg").default,      
 }

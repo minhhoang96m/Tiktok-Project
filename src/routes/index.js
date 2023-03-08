@@ -6,7 +6,7 @@ import Profile from "~/pages/Profile";
 import Upload from "~/pages/Upload";
 
 
-import { useRef, useState } from 'react'
+// import { useRef, useState } from 'react'
 // import Search from "~/pages/Search";
 
 
@@ -19,16 +19,16 @@ const publicRoutes = [
     { path: "/@?nickname", component: Profile },
 ];
 const privateRoutes = [];
-function Datas({myData}) {
-    const [ok,setok] = useState('')
-    const refs = useRef(myData)
-    setok(refs.current)
-    console.log(ok)
-    return (<>{
+// function Datas({myData}) {
+//     const [ok,setok] = useState('')
+//     const refs = useRef(myData)
+//     setok(refs.current)
+//     console.log(ok)
+//     return (<>{
        
-    }
-    </>) 
-}
+//     }
+//     </>) 
+// }
 
-export default Datas;
+// export default Datas;
 export { publicRoutes, privateRoutes };

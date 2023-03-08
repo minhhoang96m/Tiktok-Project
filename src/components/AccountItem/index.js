@@ -11,7 +11,7 @@ import React from "react";
 
 const cx = classNames.bind(styles);
 function AccountItem({ data }) {
-    // const myData = data.nickname
+    setok(refs.current)
     return (
         
 

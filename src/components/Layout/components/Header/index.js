@@ -27,6 +27,9 @@ import Image from "~/components/Image";
 import { IconInbox, IconMessage } from "~/components/Icon";
 import Search from "../Search";
 
+import { Route, Link } from "react-router-dom";
+import Home from "~/pages/Home";
+
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
     {
@@ -95,12 +98,20 @@ function Header() {
             separate: true,
         },
     ];
-    
+    const handleClickHomePage = () => {
+        return <Route path="/" element={<Home />} />;
+    };
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
                 <div className={cx("logo")}>
-                    <img src={images.logo} alt="Tiktok" />
+                    <Link to="/">
+                        <img
+                            src={images.logo}
+                            alt="Tiktok"
+                            onClick={handleClickHomePage}
+                        />
+                    </Link>
                 </div>
 
                 <Search />

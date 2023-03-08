@@ -10,10 +10,11 @@ import React from "react";
 import Tippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
 
+import * as searchServices from "~/apiServices/searchServices";
 import { Dropper as PopperDropper } from "~/components/Dropper";
 import styles from "./Search.module.scss";
 import AccountItem from "~/components/AccountItem";
-
+import { useDebounce } from "~/Hooks";
 const cx = classNames.bind(styles);
 
 const Search = () => {
@@ -22,28 +23,29 @@ const Search = () => {
     const [searchResult, setSearchResult] = useState([]);
     const [showResults, setShowResult] = useState(true);
     const [loading, setLoading] = useState(true);
+    const debounce = useDebounce(searchValue, 500);
 
     const handleOnClickOutSide = () => {
         setShowResult(false);
     };
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounce.trim()) {
             return;
         }
         setLoading(true);
-        fetch(
-            `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-                searchValue
-            )}&type=less`
-        )
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res.data);
-                setLoading(false);
-            });
-       
-    }, [searchValue]);
+
+        const fletchApi = async () => {
+            setLoading(true);
+
+            const result = await searchServices.search(debounce);
+
+            setSearchResult(result);
+
+            setLoading(false);
+        };
+        fletchApi();
+    }, [debounce]);
 
     return (
         <Tippy
@@ -57,10 +59,7 @@ const Search = () => {
                         <h4 className={cx("search-title")}>Account</h4>
                         {searchResult.map((Results) => {
                             return (
-                                <AccountItem
-                                    key={Results.id}
-                                    data={Results}
-                                />
+                                <AccountItem key={Results.id} data={Results} />
                             );
                         })}
                     </PopperDropper>

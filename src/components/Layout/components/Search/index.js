@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faCircleXmark,
     faMagnifyingGlass,
-    // faSpinner,
+    faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import Tippy from "@tippyjs/react/headless";
@@ -16,31 +16,53 @@ import AccountItem from "~/components/AccountItem";
 
 const cx = classNames.bind(styles);
 
-function Search() {
+const Search = () => {
     const ref1 = useRef();
     const [searchValue, setSearchValue] = useState("");
     const [searchResult, setSearchResult] = useState([]);
-    const [showResults, setShowResult] = useState(true)
+    const [showResults, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(true);
+
     const handleOnClickOutSide = () => {
         setShowResult(false);
-    }
+    };
+
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1,2]);
-        }, 0);
-    }, []);
+        if (!searchValue.trim()) {
+            return;
+        }
+        setLoading(true);
+        fetch(
+            `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
+                searchValue
+            )}&type=less`
+        )
+            .then((res) => res.json())
+            .then((res) => {
+                setSearchResult(res.data);
+                setLoading(false);
+            });
+       
+    }, [searchValue]);
+
     return (
         <Tippy
-            visible={showResults && searchResult.length > 0}
+            visible={
+                showResults && searchResult.length > 0 && searchValue.length > 0
+            }
             interactive
             render={(attrs) => (
                 <div className={cx("search-result")} tabIndex="-1" {...attrs}>
                     <PopperDropper>
                         <h4 className={cx("search-title")}>Account</h4>
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
+                        {searchResult.map((Results) => {
+                            return (
+                                <AccountItem
+                                    key={Results.id}
+                                    data={Results}
+                                />
+                            );
+                        })}
                     </PopperDropper>
                 </div>
             )}
@@ -56,19 +78,22 @@ function Search() {
                     onChange={(e) => setSearchValue(e.target.value)}
                     onFocus={() => setShowResult(true)}
                 />
-                {!!searchValue && (
+
+                {!!searchValue && !loading && (
                     <button
                         className={cx("search-close")}
                         onClick={() => {
-                            setSearchValue("") 
-                            ref1.current.focus()
+                            setSearchValue("");
+                            ref1.current.focus();
                         }}
                     >
                         <FontAwesomeIcon icon={faCircleXmark} />
                     </button>
-                    //   <button className={cx("search-loading")}>
-                    //       <FontAwesomeIcon icon={faSpinner} />
-                    //   </button>
+                )}
+                {searchValue.length > 0 && loading && (
+                    <button className={cx("search-loading")}>
+                        <FontAwesomeIcon icon={faSpinner} />
+                    </button>
                 )}
 
                 <button className={cx("search-icon")}>
@@ -77,6 +102,6 @@ function Search() {
             </div>
         </Tippy>
     );
-}
+};
 
 export default Search;

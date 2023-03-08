@@ -47,16 +47,17 @@
     margin-right: 1rem;
     color: rgba(22, 24, 35, 0.34);
     top: 50%;
-    transform: translateY(-50%);
+     transform: translateY(-50%);
+
 }
 .search-loading {
     position: absolute;
     right: var(--search-width);
     margin-right: 1rem;
     color: rgba(22, 24, 35, 0.34);
-    display: none;
     top: 50%;
-    transform: translateY(-50%);
+    // transform: translateY(-50%);
+    animation: spinner infinite linear 1s;
 }
 .search-icon {
     width: 52px;
@@ -68,5 +69,13 @@
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);
         cursor: pointer;
+    }
+}
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform:  translateY(-50%) rotate(360deg);
     }
 }

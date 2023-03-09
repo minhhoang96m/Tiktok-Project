@@ -47,59 +47,70 @@ const Search = () => {
         fletchApi();
     }, [debounce]);
 
+    const handleOnChange = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(" ")) {
+            setSearchValue(searchValue);
+        }
+    };
+
     return (
-        <Tippy
-            visible={
-                showResults && searchResult.length > 0 && searchValue.length > 0
-            }
-            interactive
-            render={(attrs) => (
-                <div className={cx("search-result")} tabIndex="-1" {...attrs}>
-                    <PopperDropper>
-                        <h4 className={cx("search-title")}>Account</h4>
-                        {searchResult.map((Results) => {
-                            return (
-                                <AccountItem key={Results.id} data={Results} />
-                            );
-                        })}
-                    </PopperDropper>
+        // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+        <div>
+            <Tippy
+
+                visible={
+                    showResults && searchResult.length > 0 && searchValue.length > 0
+                }
+                interactive
+                render={(attrs) => (
+                    <div className={cx("search-result")} tabIndex="-1" {...attrs}>
+                        <PopperDropper>
+                            <h4 className={cx("search-title")}>Account</h4>
+                            {searchResult.map((Results) => {
+                                return (
+                                    <AccountItem key={Results.id} data={Results} />
+                                );
+                            })}
+                        </PopperDropper>
+                    </div>
+                )}
+                onClickOutside={handleOnClickOutSide}
+            >
+                <div className={cx("search")}>
+                    <input
+                        ref={ref1}
+                        value={searchValue}
+                        className={cx("search-input")}
+                        placeholder="Search accounts and videos"
+                        spellCheck={false}
+                        onChange={handleOnChange}
+                        onFocus={() => setShowResult(true)}
+                    />
+    
+                    {!!searchValue && !loading && (
+                        <button
+                            className={cx("search-close")}
+                            onClick={() => {
+                                setSearchValue("");
+                                ref1.current.focus();
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faCircleXmark} />
+                        </button>
+                    )}
+                    {searchValue.length > 0 && loading && (
+                        <button className={cx("search-loading")}>
+                            <FontAwesomeIcon icon={faSpinner} />
+                        </button>
+                    )}
+        
+                    <button className={cx("search-icon")}>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} onMouseDown={e => e.preventDefault()}/>
+                    </button>
                 </div>
-            )}
-            onClickOutside={handleOnClickOutSide}
-        >
-            <div className={cx("search")}>
-                <input
-                    ref={ref1}
-                    value={searchValue}
-                    className={cx("search-input")}
-                    placeholder="Search accounts and videos"
-                    spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
-                    onFocus={() => setShowResult(true)}
-                />
-
-                {!!searchValue && !loading && (
-                    <button
-                        className={cx("search-close")}
-                        onClick={() => {
-                            setSearchValue("");
-                            ref1.current.focus();
-                        }}
-                    >
-                        <FontAwesomeIcon icon={faCircleXmark} />
-                    </button>
-                )}
-                {searchValue.length > 0 && loading && (
-                    <button className={cx("search-loading")}>
-                        <FontAwesomeIcon icon={faSpinner} />
-                    </button>
-                )}
-
-                <button className={cx("search-icon")}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
-            </div>
-        </Tippy>
+            </Tippy>
+        </div>
     );
 };
 

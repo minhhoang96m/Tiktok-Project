@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -26,9 +27,7 @@ import Menu from "~/components/ListResult";
 import Image from "~/components/Image";
 import { IconInbox, IconMessage } from "~/components/Icon";
 import Search from "../Search";
-
-import { Route, Link } from "react-router-dom";
-import Home from "~/pages/Home";
+import routesConfig from "~/config/routes";
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -38,6 +37,86 @@ const MENU_ITEMS = [
         children: {
             title: "Language",
             data: [
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
+                {
+                    type: "language",
+                    code: "en",
+                    title: "English",
+                },
+                {
+                    type: "language",
+                    code: "vi",
+                    title: "Tieng Viet",
+                },
                 {
                     type: "language",
                     code: "en",
@@ -98,19 +177,13 @@ function Header() {
             separate: true,
         },
     ];
-    const handleClickHomePage = () => {
-        return <Route path="/" element={<Home />} />;
-    };
+
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
                 <div className={cx("logo")}>
-                    <Link to="/">
-                        <img
-                            src={images.logo}
-                            alt="Tiktok"
-                            onClick={handleClickHomePage}
-                        />
+                    <Link to={routesConfig.home}>
+                        <img src={images.logo} alt="Tiktok" />
                     </Link>
                 </div>
 
@@ -169,9 +242,9 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx("user-avatar")}
-                                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/c3a691d2863e61d0442e0e017fc36e0a~c5_100x100.jpeg?x-expires=1678280400&x-signature=y2A44i45NMqoUqpxp1%2BZzN2ifcY%3D"
+                                src='https://i0.wp.com/www.cssscript.com/wp-content/uploads/2020/12/Customizable-SVG-Avatar-Generator-In-JavaScript-Avataaars.js.png?fit=438%2C408&ssl=1'
                                 alt="ok"
-                                fallBack="https://p77-sign-va.tiktokcdn.com/tos-maliva-avt-0068/3c471a7fb8b64142610f545f61641c83~c5_100x100.jpeg?x-expires=1678370400&x-signature=TUxCR%2BzegHJeoTThjKWVJJJfbcA%3D"
+                                
                             />
                         ) : (
                             <button className={cx("more-btn")}>

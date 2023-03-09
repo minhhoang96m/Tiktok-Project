@@ -3,10 +3,11 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
-
+  
 }
 .menu-lives {
     padding: 8px 0;
+  
     .menu-item {
         width: 100%;
         display: flex;
@@ -23,6 +24,7 @@
         padding: 10px 16px;
         border-top: 1px solid rgba(22,24,35,0.12);
     }
+
 }
 
 // Header-language
@@ -43,4 +45,5 @@
         background-color: transparent;
         cursor: pointer;
     }
+ 
 }

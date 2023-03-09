@@ -8,7 +8,7 @@ import MenuItem from "./MenuItem";
 import Header from "./Header";
 
 const cx = classNames.bind(styles);
-function Menu({ children, items = [] , onChange}) {
+function Menu({ children, items = [], hideOnClick=false , onChange}) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
     const render = () => {
@@ -33,8 +33,8 @@ function Menu({ children, items = [] , onChange}) {
     return (
         <Tippy
             interactive
-            // visible
             delay={[0,400]}
+            hideOnClick={hideOnClick}
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx("menu-live")} tabIndex="-1" {...attrs}>
@@ -49,7 +49,7 @@ function Menu({ children, items = [] , onChange}) {
                                 }}
                             />
                         )}
-                        {render()}
+                        <div>{render()}</div>
                     </PopperDropper>
                 </div>
             )}

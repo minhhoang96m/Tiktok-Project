@@ -1,6 +1,6 @@
 .wrapper {
     font-size: 1.6rem;
-    font-family: 'ProximaNova', sans-serif;
+    font-family: var(--font-family);
     font-weight: 600;
     min-width: 10rem;
     padding: 0.9rem 0.16rem;
@@ -16,7 +16,7 @@
     & .icon {
         margin-right: 0.8rem ;
     }
-    
+
 }
 .primary {
     background-color: var(--primary);

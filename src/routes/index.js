@@ -1,6 +1,6 @@
 import routesConfig from "~/config/routes";
 
-import { HeaderOnly} from "~/components/Layout";
+import { HeaderOnly} from "~/layouts";
 
 import Home from "~/pages/Home";
 import Following from "~/pages/Following";

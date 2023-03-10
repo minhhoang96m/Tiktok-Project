@@ -194,7 +194,7 @@ function Header() {
                         <>
                             <CloneTippy
                                 delay={[0, 50]}
-                                content="Messages"
+                                content="Upload video"
                                 placement="bottom"
                             >
                                 <Button text className={cx("action-upload")}>
@@ -207,7 +207,7 @@ function Header() {
                             </CloneTippy>
                             <CloneTippy
                                 delay={[0, 50]}
-                                content="Upload video"
+                                content="Messages"
                                 placement="bottom"
                             >
                                 <button className={cx("action-btn")}>
@@ -216,7 +216,7 @@ function Header() {
                             </CloneTippy>
                             <CloneTippy
                                 delay={[0, 50]}
-                                content="Messages"
+                                content="Inbox"
                                 placement="bottom"
                             >
                                 <button className={cx("action-btn")}>

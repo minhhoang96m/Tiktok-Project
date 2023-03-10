@@ -10,11 +10,11 @@ import React from "react";
 import Tippy from "@tippyjs/react/headless";
 import "tippy.js/dist/tippy.css";
 
-import * as searchServices from "~/apiServices/searchServices";
+import * as searchServices from "~/services/searchService";
 import { Dropper as PopperDropper } from "~/components/Dropper";
 import styles from "./Search.module.scss";
 import AccountItem from "~/components/AccountItem";
-import { useDebounce } from "~/Hooks";
+import { useDebounce } from "~/hooks";
 const cx = classNames.bind(styles);
 
 const Search = () => {

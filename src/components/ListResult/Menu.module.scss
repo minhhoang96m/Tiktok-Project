@@ -1,13 +1,16 @@
 .menu-live {
-    min-width: 223px ;
+    min-width: 223px;
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
-  
+    .menu-scroll {
+        position: relative;
+        overflow-y: auto;
+    }
 }
 .menu-lives {
     padding: 8px 0;
-  
+
     .menu-item {
         width: 100%;
         display: flex;
@@ -16,27 +19,31 @@
         margin-left: 0;
         padding-left: 2rem;
         &:hover {
-            background: var(--primary);         
+            background: var(--primary);
         }
     }
     .separate {
         height: 100%;
         padding: 10px 16px;
-        border-top: 1px solid rgba(22,24,35,0.12);
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
     }
-
 }
 
 // Header-language
 
 .header {
-    position: relative;
+    position: sticky;
     height: 50px;
+    width: 100%;
+    min-height: 5rem;
+    z-index: 3;
+    top: 0;
+
     &-title {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         user-select: none;
     }
     &-btn {
@@ -45,5 +52,4 @@
         background-color: transparent;
         cursor: pointer;
     }
- 
 }

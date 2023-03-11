@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from "classnames/bind";
 import styles from './Dropper.module.scss'
 
@@ -9,5 +10,8 @@ function Dropper({children, className}) {
     return <div className={classes}>{children}</div>
     
 }
-
+Dropper.propTypes = {
+    children : PropTypes.node.isRequired,
+    className : PropTypes.string,
+}
 export default Dropper;

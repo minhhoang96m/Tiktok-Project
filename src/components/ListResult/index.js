@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import styles from "./Menu.module.scss";
 import Tippy from "@tippyjs/react/headless";
@@ -8,7 +9,7 @@ import MenuItem from "./MenuItem";
 import Header from "./Header";
 
 const cx = classNames.bind(styles);
-function Menu({ children, items = [], hideOnClick=false , onChange}) {
+function Menu({ children, items = [], hideOnClick = false, onChange }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
     const render = () => {
@@ -22,18 +23,18 @@ function Menu({ children, items = [], hideOnClick=false , onChange}) {
                         if (isParent) {
                             setHistory((pre) => [...pre, item.children]);
                         } else {
-                            onChange(item)
+                            onChange(item);
                         }
                     }}
                 />
             );
         });
     };
-    
+
     return (
         <Tippy
             interactive
-            delay={[0,400]}
+            delay={[0, 400]}
             hideOnClick={hideOnClick}
             placement="bottom-end"
             render={(attrs) => (
@@ -41,23 +42,29 @@ function Menu({ children, items = [], hideOnClick=false , onChange}) {
                     <PopperDropper className={cx("menu-lives")}>
                         {history.length > 1 && (
                             <Header
-                                title="Language"
+                                title={current.title}
                                 onBack={() => {
                                     setHistory((pre) =>
-                                        pre.slice(0, pre.length-1)
+                                        pre.slice(0, pre.length - 1)
                                     );
                                 }}
                             />
                         )}
-                        <div>{render()}</div>
+                        <div className={cx("menu-scroll")}>{render()}</div>
                     </PopperDropper>
                 </div>
             )}
-            onHide={() => setHistory(pre => pre.slice(0,1))}
+            onHide={() => setHistory((pre) => pre.slice(0, 1))}
         >
             {children}
         </Tippy>
     );
 }
+Menu.protoTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    hideOnClick: PropTypes.bool,
+    onChange: PropTypes.func,
+};
 
 export default Menu;

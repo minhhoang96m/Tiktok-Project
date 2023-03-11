@@ -27,7 +27,7 @@ import Menu from "~/components/ListResult";
 import Image from "~/components/Image";
 import { IconInbox, IconMessage } from "~/components/Icon";
 import Search from "../Search";
-import routesConfig from "~/config/routes";
+import config from "~/config";
 
 const cx = classNames.bind(styles);
 const MENU_ITEMS = [
@@ -182,7 +182,7 @@ function Header() {
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
                 <div className={cx("logo")}>
-                    <Link to={routesConfig.home}>
+                    <Link to={config.routes.home}>
                         <img src={images.logo} alt="Tiktok" />
                     </Link>
                 </div>
@@ -242,9 +242,8 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx("user-avatar")}
-                                src='https://i0.wp.com/www.cssscript.com/wp-content/uploads/2020/12/Customizable-SVG-Avatar-Generator-In-JavaScript-Avataaars.js.png?fit=438%2C408&ssl=1'
+                                src="https://i0.wp.com/www.cssscript.com/wp-content/uploads/2020/12/Customizable-SVG-Avatar-Generator-In-JavaScript-Avataaars.js.png?fit=438%2C408&ssl=1"
                                 alt="ok"
-                                
                             />
                         ) : (
                             <button className={cx("more-btn")}>
@@ -259,3 +258,5 @@ function Header() {
 }
 
 export default Header;
+
+

@@ -7,7 +7,7 @@ import Image from "../Image";
 
 import React from "react";
 // import MyContext from "~/components/AccountItem/MyContext.js";
-// import Datas from '~/routes' 
+// import Datas from '~/routess' 
 
 const cx = classNames.bind(styles);
 function AccountItem({ data }) {

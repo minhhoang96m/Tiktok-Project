@@ -1,0 +1,39 @@
+.wrapper-link {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+}
+.menu-item {
+    position: relative;
+    width: 100%;
+    min-height: 4.8rem;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    user-select: none;
+    transition: background-color ease-in-out 200ms;
+    &--text {
+        margin-left: 1rem;
+        // color: rgba(22, 24, 35, 1);
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 25px;
+    }
+    &:focus-visible {
+        outline: 2px solid rgba(255, 76, 58, 1);
+    }
+    &:visited {
+        color: rgba(22, 24, 35, 1);
+    }
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+    }
+    &.active {
+        background: rgba(22, 24, 35, 0.03);
+        color: var(--primary) ;
+    }   
+
+}

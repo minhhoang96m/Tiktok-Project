@@ -34,6 +34,19 @@
     &.active {
         background: rgba(22, 24, 35, 0.03);
         color: var(--primary) ;
+        .icon {
+            display: none;
+        }
+        .active-icon {
+            display: flex;
+            align-items: center;
+        }   
     }   
-
+.icon {
+    display: flex;
+    align-items: center;
+}
+}
+.active-icon {
+    display: none;
 }
